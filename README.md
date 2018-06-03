@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Mobile Web Specialist Certification Course
 ---
 #### _Three Stage Course Material Project - Restaurant Reviews_
@@ -26,3 +27,6 @@ Most of the code in this project has been written to the ES6 JavaScript specific
 
 
 
+=======
+# MWS-Restaurant
+>>>>>>> ef5ed89ce92fa1e118751fd739596ccdffd3b16a
