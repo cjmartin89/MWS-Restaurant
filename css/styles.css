@@ -378,3 +378,7 @@ nav h1 a {
   min-content [Content-End Footer-Start] min-content [Footer-End];
   grid-template-columns: repeat(10, 1fr);
 }
+
+.imageAltText {
+  text-align: center;
+}
