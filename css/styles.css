@@ -59,6 +59,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
   text-align: center;
   text-transform: uppercase;
   grid-column: 1 / -1;
+  width: 100%;
 }
 /* ====================== Navigation ====================== */
 nav {
@@ -162,6 +163,7 @@ nav h1 a {
   grid-column-gap: 2rem;
   justify-content: center;
   grid-row-gap: 2rem;
+  width: 100%;
 }
 
 #restaurants-list li {
