@@ -14,9 +14,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "gulp-image-resize": "^0.13.0",
     "node-sass": "^4.9.0"
   },
   "dependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.3",
     "npm": "^6.1.0"
   }
 }
