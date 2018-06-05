@@ -205,7 +205,7 @@ nav h1 a {
   margin: 0;
   font-size: 11pt;
 }
-#restaurants-list li a {
+#restaurants-list li button {
   background-color: orange;
   border-bottom: 3px solid #eee;
   color: #fff;
@@ -219,6 +219,13 @@ nav h1 a {
 }
 
 /* ====================== Restaurant Details ====================== */
+.inside {
+  display: grid;
+  grid-template-rows: [Header-Start] min-content [Header-End Content-Start] 
+  min-content [Content-End Footer-Start] min-content [Footer-End];
+  grid-template-columns: repeat(10, 1fr);
+}
+
 .inside header {
   /* position: fixed; */
   z-index: 1000;
@@ -287,7 +294,7 @@ nav h1 a {
   font-size: 12pt;
   font-weight: 300;
   letter-spacing: 10px;
-  margin: 0 0 20px;
+  margin: 0;
   padding: 2px 0;
   text-align: center;
   text-transform: uppercase;
@@ -370,15 +377,6 @@ nav h1 a {
   color: #666;
 } 
 
-/* CSS GRID */
-
-.page {
-  display: grid;
-  grid-template-rows: [Header-Start] min-content [Header-End Content-Start] 
-  min-content [Content-End Footer-Start] min-content [Footer-End];
-  grid-template-columns: repeat(10, 1fr);
-}
-
-.imageAltText {
+#imageAltText {
   text-align: center;
 }
