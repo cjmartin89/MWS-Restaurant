@@ -59,7 +59,6 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
   text-align: center;
   text-transform: uppercase;
   grid-column: 1 / -1;
-  width: 100%;
 }
 /* ====================== Navigation ====================== */
 nav {
@@ -89,7 +88,13 @@ nav h1 a {
 
 @media only screen and (max-width: 50em) {
   #breadcrumb { 
-    width: 100%;
+    width: unset;
+  }
+}
+
+@media only screen and (max-width: 25em) {
+  #breadcrumb { 
+    width: 80%;
   }
 }
 
@@ -124,7 +129,6 @@ nav h1 a {
 }
 /* ====================== Restaurant Filtering ====================== */
 .filter-options {
-  width: 100%;
   min-height: 75px;
   background-color: #3397DB;
   align-items: center;
@@ -163,7 +167,6 @@ nav h1 a {
   grid-column-gap: 2rem;
   justify-content: center;
   grid-row-gap: 2rem;
-  width: 100%;
 }
 
 #restaurants-list li {
@@ -231,6 +234,7 @@ nav h1 a {
   z-index: 1000;
   grid-column: 1 / -1;
   grid-row: Header-Start / Header-End;
+  position: relative;
 }
 .inside #map-container {
   background: blue none repeat scroll 0 0;
