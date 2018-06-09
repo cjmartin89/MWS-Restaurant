@@ -1,5 +1,7 @@
 // Code used on 6/5/18 https://developers.google.com/web/ilt/pwa/
 
+//Code used on 6/8/18 https://developers.google.com/web/fundamentals/primers/service-workers/
+
 (function() {
     'use strict';
   
