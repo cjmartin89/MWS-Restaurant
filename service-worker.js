@@ -19,6 +19,7 @@
     var restaurantCache = 'restaurant-cache-v1';
   
     //Install definition for the service worker
+
     self.addEventListener('install', function(event) {
       console.log('Attempting to install service worker and cache static assets');
       event.waitUntil(
@@ -27,13 +28,15 @@
         .then(function(cache) {
           // Add static files to cache
           return cache.addAll(restaurantCacheFiles);
+        }).catch(error => {
+          console.log(`Failed to open cache: ${error}`);
         })
       );
     });
   
     // Service Worker fetch event definition
-    self.addEventListener('fetch', function(event) {
-      console.log('Fetch event: ', event.request.url);
+    self.addEventListener('fetch', event => {
+      console.log(`Fetch event: ', ${event.request.url}`);
       event.respondWith(
         // Match request in the cache and return response if found
         caches.match(event.request).then(function(response) {

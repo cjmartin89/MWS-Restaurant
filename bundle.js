@@ -1,10 +1,29 @@
+(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 const port = '1337'
 
 let restaurants,
-    neighborhoods,
-    cuisines
+  neighborhoods,
+  cuisines
 var map
 var markers = []
+
+// Register Service Worker
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js', { scope: `http://localhost:8000/`})
+  .then(function(registration) {
+    console.log('Registration successful, scope is:', registration.scope);
+  })
+  .catch(function(error) {
+    console.log('Service worker registration failed, error:', error);
+  });
+}
+
+var dbPromise = idb.open('restaurantsDb', 1, function(upgradeDb) {
+  var restaurantsDbStore = upgradeDb.createObjectStore('restaurants', {
+    keyPath: 'id'
+  });
+});
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
@@ -24,7 +43,7 @@ fetchNeighborhoods = () => {
     } else {
       self.neighborhoods = neighborhoods;
 
-      
+
 
       fillNeighborhoodsHTML();
     }
@@ -189,3 +208,5 @@ addMarkersToMap = (restaurants = self.restaurants) => {
     self.markers.push(marker);
   });
 }
+
+},{}]},{},[1]);
