@@ -150,7 +150,7 @@ createRestaurantHTML = (restaurant) => {
   li.append(image);
 
   const pictureText = document.createElement('p');
-  pictureText.id = 'imageAltText';
+  pictureText.className = 'imageAltText';
   pictureText.innerHTML = image.alt;
   li.append(pictureText);
 

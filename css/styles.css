@@ -6,9 +6,10 @@ html {
 }
 
 body,td,th,p{
-	font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+  font-display: auto;
 	font-size: 10pt;
-	color: #333;
+	color: #fff;
 	line-height: 1.5;
 }
 body {
@@ -18,7 +19,8 @@ body {
   
 }
 ul, li {
-	font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+  font-display: auto;
 	font-size: 10pt;
 	color: #333;
 }
@@ -35,6 +37,7 @@ a img{
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: Arial, Helvetica, sans-serif;
+  font-display: auto;
   margin: 0 0 20px;
 }
 article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
@@ -52,7 +55,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 
 #footer {
   background-color: #444;
-  color: #aaa;
+  color: #fff;
   font-size: 8pt;
   letter-spacing: 1px;
   padding: 25px;
@@ -130,7 +133,7 @@ nav h1 a {
 /* ====================== Restaurant Filtering ====================== */
 .filter-options {
   min-height: 75px;
-  background-color: #3397DB;
+  background-color: #000;
   align-items: center;
   padding: 1rem;
 }
@@ -147,6 +150,7 @@ nav h1 a {
   background-color: white;
   border: 1px solid #fff;
   font-family: Arial,sans-serif;
+  font-display: auto;
   font-size: 11pt;
   height: 35px;
   letter-spacing: 0;
@@ -181,6 +185,7 @@ nav h1 a {
   background-color: #fff;
   border: 2px solid #ccc;
   font-family: Arial,sans-serif;
+  font-display: auto;
   margin: 15px;
   min-height: 380px;
   padding: 0 30px 25px;
@@ -204,8 +209,9 @@ nav h1 a {
   min-width: 100%;
 }
 #restaurants-list li h2 {
-  color: #f18200;
+  color: #000;
   font-family: Arial,sans-serif;
+  font-display: auto;
   font-size: 14pt;
   font-weight: 200;
   letter-spacing: 0;
@@ -218,7 +224,7 @@ nav h1 a {
   font-size: 11pt;
 }
 #restaurants-list li button {
-  background-color: orange;
+  background-color: #000;
   border-bottom: 3px solid #eee;
   color: #fff;
   display: inline-block;
@@ -280,6 +286,7 @@ nav h1 a {
 #restaurant-name {
   color: #f18200;
   font-family: Arial,sans-serif;
+  font-display: auto;
   font-size: 20pt;
   font-weight: 200;
   letter-spacing: 0;
@@ -385,11 +392,12 @@ nav h1 a {
 
 #reviews-list li p {
   margin: 0 0 10px;
+  color: #000;
 }
 #restaurant-hours td {
   color: #666;
 } 
 
-#imageAltText {
+.imageAltText {
   text-align: center;
 }
