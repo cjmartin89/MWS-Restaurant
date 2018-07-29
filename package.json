@@ -2,22 +2,30 @@
   "name": "mws-restaurant-stage-1-master",
   "version": "1.0.0",
   "description": "--- #### _Three Stage Course Material Project - Restaurant Reviews_",
-  "main": "main.js",
+  "private": true,
   "scripts": {
+    "babel": "babel --presets es2015 src/js/main.js -o build/main.bundle.js",
     "watch:sass": "node-sass sass/main.scss css/styles.css -w",
     "compile:sass": "node-sass css/style.comp.css",
     "concat:sass": "concat -o css/style.concat.css css/style.comp.css",
     "prefix:css": "postcss --use autoprefixer -b 'last 10 versions' css/style.concat.css -o css/style.prefix.css",
     "compress:css": "node-sass css/style.prefix.css css/style.css --output-style compressed",
-    "build:css": "npm-run-all compile:sass concat:sass prefix:css compress:css"
+    "build:css": "npm-run-all compile:sass concat:sass prefix:css compress:css",
+    "start": "webpack --config webpack.config.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
+    "css-loader": "^1.0.0",
+    "file-loader": "^1.1.11",
     "gulp-image-resize": "^0.13.0",
-    "node-sass": "^4.9.0"
+    "node-sass": "^4.9.0",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.16.1",
+    "webpack-cli": "^3.1.0"
   },
   "dependencies": {
     "del": "^3.0.0",

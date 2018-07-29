@@ -54,7 +54,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 }
 
 #footer {
-  background-color: #444;
+  background-color: #252631;
   color: #fff;
   font-size: 8pt;
   letter-spacing: 1px;
@@ -97,7 +97,7 @@ nav h1 a {
 
 @media only screen and (max-width: 25em) {
   #breadcrumb { 
-    width: 80%;
+    width: unset;
   }
 }
 
@@ -133,7 +133,7 @@ nav h1 a {
 /* ====================== Restaurant Filtering ====================== */
 .filter-options {
   min-height: 75px;
-  background-color: #000;
+  background-color: #252831;
   align-items: center;
   padding: 1rem;
 }

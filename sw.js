@@ -1,22 +1,26 @@
 // Code used on 6/5/18 https://developers.google.com/web/ilt/pwa/
-
 //Code used on 6/8/18 https://developers.google.com/web/fundamentals/primers/service-workers/
 
-(function() {
-    'use strict';
-  
-    // Set files to cache
-    var restaurantCacheFiles = [
-      '/css/styles.css',
-      '/js/dbhelper.js',
-      '/js/main.js',
-      '/js/restaurant_info.js',
-      '/index.html',
-      '/restaurant.html'
-    ];
-  
-    // Cache name variable
-    var restaurantCache = 'restaurant-cache-v1';
+import idb from 'idb';
+
+// Cache name variable
+var restaurantCache = 'restaurant-cache-v1';
+
+// Set files to cache
+var restaurantCacheFiles = [
+  '/css/styles.css',
+  '/js/dbhelper.js',
+  '/js/main.js',
+  '/js/restaurant_info.js',
+  '/index.html',
+  '/restaurant.html'
+];
+
+const dbPromise = idb.open('mws-restaurant', 2, upgradedb => {
+  if (!upgradeDb.objectStoreNames.contains('restaurants')) {
+    upgradedb.createObjectStore('restaurants', {keyPath: "id"})
+  };
+});
   
     //Install definition for the service worker
 
@@ -63,4 +67,3 @@
       );
     });
   
-  })();
