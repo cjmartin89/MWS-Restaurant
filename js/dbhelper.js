@@ -4,12 +4,18 @@
 class DBHelper {
 
   /**
-   * Database URL.
+   * Restaurant Base URL.
    * Change this to restaurants.json file location on your server.
    */
-  static get DATABASE_URL() {
+  static get REST_DATABASE_URL() {
     const port = 1337 // Change this to your server port
     return `http://localhost:${port}/restaurants/`;
+  }
+  
+  /** Reviews Base URL */
+  static get REVIEWS_DATABASE_URL() {
+    const port = 1337 // Change this to your server port
+    return `http://localhost:${port}/reviews/`;
   }
 
   /**
@@ -17,7 +23,7 @@ class DBHelper {
    */
   static fetchRestaurants(callback) {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', DBHelper.DATABASE_URL);
+    xhr.open('GET', DBHelper.REST_DATABASE_URL);
     xhr.onload = () => {
       //Added to verify connection status
       console.log(`Status: ${xhr.status}`)

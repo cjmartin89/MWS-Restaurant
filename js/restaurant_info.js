@@ -98,24 +98,33 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
 /**
  * Create all reviews HTML and add them to the webpage.
  */
-fillReviewsHTML = (reviews = self.restaurant.reviews) => {
-  console.log(`Reviews: ${self.restaurant.reviews}`);
-  const container = document.getElementById('reviews-container');
-  const title = document.createElement('h2');
-  title.innerHTML = 'Reviews';
-  container.appendChild(title);
+fillReviewsHTML = (reviews) => {
+  const reviewsUrl = DBHelper.REVIEWS_DATABASE_URL + `?restaurant_id=${self.restaurant.id}`;
+  console.log(`Review URL: ${reviewsUrl}`);
+  fetch(reviewsUrl).then(function(response) {
+    response.json().then(function(data) {
 
-  if (!reviews) {
-    const noReviews = document.createElement('p');
-    noReviews.innerHTML = 'No reviews yet!';
-    container.appendChild(noReviews);
-    return;
-  }
-  const ul = document.getElementById('reviews-list');
-  reviews.forEach(review => {
-    ul.appendChild(createReviewHTML(review));
-  });
-  container.appendChild(ul);
+      reviews = data;
+
+      const container = document.getElementById('reviews-container');
+      const title = document.createElement('h2');
+      title.innerHTML = 'Reviews';
+      container.appendChild(title);
+
+      if (!reviews) {
+        const noReviews = document.createElement('p');
+        noReviews.innerHTML = 'No reviews yet!';
+        container.appendChild(noReviews);
+        return;
+      }
+      
+      const ul = document.getElementById('reviews-list');
+      reviews.forEach(review => {
+      ul.appendChild(createReviewHTML(review));
+      });
+      container.appendChild(ul);
+    });
+  })
 }
 
 /**
@@ -125,10 +134,13 @@ createReviewHTML = (review) => {
   const li = document.createElement('li');
   const name = document.createElement('p');
   name.innerHTML = review.name;
+  console.log(review.name);
   li.appendChild(name);
 
   const date = document.createElement('p');
-  date.innerHTML = review.date;
+  var convertedDate = new Date(review.createdAt);
+  console.log(`${convertedDate}`);
+  date.innerHTML = convertedDate;
   li.appendChild(date);
 
   const rating = document.createElement('p');
