@@ -72,6 +72,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
     fillRestaurantHoursHTML();
   }
   // fill reviews
+  fillReviewTitle();
   fillReviewsHTML();
 }
 
@@ -95,6 +96,22 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
   }
 }
 
+// Add review title and button
+
+fillReviewTitle = () => {
+      const container = document.getElementById('reviews-container');
+      const div = document.getElementById('div');
+      const title = document.createElement('h2');
+      const button = document. createElement('button');
+      button. innerHTML = "Add Review";
+      button.id = 'reviewBtn';
+      title.innerHTML = 'Reviews';
+      title.id = 'reviewTitle';
+      container.appendChild(div);
+      div.appendChild(title)
+      div.appendChild(button);
+}
+
 /**
  * Create all reviews HTML and add them to the webpage.
  */
@@ -107,9 +124,31 @@ fillReviewsHTML = (reviews) => {
       reviews = data;
 
       const container = document.getElementById('reviews-container');
-      const title = document.createElement('h2');
-      title.innerHTML = 'Reviews';
-      container.appendChild(title);
+
+      var modal = document.getElementById('reviewForm');
+      var btn = document.getElementById('reviewBtn');
+
+      // Review Form Modal
+
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+      // Open the modal 
+      btn.onclick = function() {
+          modal.style.display = "block";
+      }
+
+      // Close the modal
+      span.onclick = function() {
+          modal.style.display = "none";
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+          if (event.target == modal) {
+              modal.style.display = "none";
+          }
+      }
 
       if (!reviews) {
         const noReviews = document.createElement('p');
@@ -179,3 +218,54 @@ getParameterByName = (name, url) => {
     return '';
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
+
+window.addEventListener("load", function () {
+  console.log(`Form Data: `)
+  function sendData() {
+    var XHR = new XMLHttpRequest();
+    var restID = window.location.href.slice(-1);
+
+    // Bind the FormData object and the form element
+    var FD = new FormData(form);
+    FD.append('restaurant_id', restID);
+    console.log(FD);
+
+    // Define what happens on successful data submission
+    XHR.addEventListener("load", function(event) {
+      alert(`You have successfully added your review`);
+      document.getElementById("addReview").reset();
+      var modal = document.getElementById('reviewForm');
+      modal.style.display = "none";
+      var ul = document.getElementById('reviews-list');
+      var list = ul.getElementsByTagName("li")
+      while(list.length > 0) {
+        ul.removeChild(list[0]);
+      }
+      fillReviewsHTML();
+    });
+
+    // Define what happens in case of error
+    XHR.addEventListener("error", function(event) {
+      alert('Oops! Something went wrong.');
+    });
+
+    // Set up our request
+    XHR.open("POST", "http://localhost:1337/reviews/");
+
+    // The data sent is what the user provided in the form
+    XHR.send(FD);
+
+  }
+ 
+  // Access the form element...
+  this.console.log(`Get Form -----`);
+  var form = document.getElementById("addReview");
+  this.console.log(form);
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    console.log(`Submit Pressed`);
+
+    sendData();
+  });
+});

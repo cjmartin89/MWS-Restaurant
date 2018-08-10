@@ -47,8 +47,27 @@
         <!-- end restaurant -->
         <!-- Beginning reviews -->
         <section id="reviews-container">
+            <div id="div"></div>
+            <div id="reviewForm" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <h2>Add Review</h2>
+                  <form id="addReview" class="form-group">
+                    <label for="name" class="reviewFormLabel">Name: </label><br>
+                    <input type="text" name="name" class="reviewInput" placeholder="Enter Your Name Here"><br>
+                    <label for="rating" class="reviewFormLabel">Rating: </label><br>
+                    <input type="text" name="rating" class="reviewInput" placeholder="Enter Rating Between 1 - 5 Here"><br>
+                    <label for="comments" class="reviewFormLabel">Comment: </label><br>
+                    <input type="text" name="comments" class="reviewInput" id="commentInput" placeholder="Enter Your Comment Here"><br>
+                    <input type="submit" value="Submit" id="submitButton">
+                  </form>
+                </div>
+              
+              </div>
           <ul id="reviews-list"></ul>
         </section>
+
         <!-- End reviews -->
       </main>
       <!-- End main -->
@@ -67,7 +86,6 @@
       <!-- Google Maps -->
       <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXAV7JXEVHkQ2btJFJdXUiOUuL0YDSn50&libraries=places&callback=initMap"></script>
       <!-- End scripts -->
-    
     
     </body>
 
