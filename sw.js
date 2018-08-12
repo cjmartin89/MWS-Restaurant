@@ -30,16 +30,13 @@ self.addEventListener('fetch', function (event) {
     return;
   }
 
-  console.log("Fetch event: ', " + requestUrl);
   event.respondWith(
   // Match request in the cache and return response if found
   caches.match(event.request).then(function (response) {
     if (response) {
-      console.log('Found ', requestUrl, ' in cache');
       return response;
     }
     // Perform network request for the requested URL
-    console.log('Network request for ', requestUrl);
     return fetch(event.request).then(function (response) {
       if (response.status === 404) {
         console.log('Unable to retrieve response');

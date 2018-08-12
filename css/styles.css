@@ -227,13 +227,13 @@ nav h1 a {
   background-color: #000;
   border-bottom: 3px solid #eee;
   color: #fff;
-  display: inline-block;
   font-size: 10pt;
-  margin: 15px 0 0;
+  margin: 15px auto;
   padding: 8px 30px 10px;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
+  display: block;
 }
 
 /* ====================== Restaurant Details ====================== */

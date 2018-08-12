@@ -129,20 +129,16 @@ fillReviewsHTML = (reviews) => {
       var btn = document.getElementById('reviewBtn');
 
       // Review Form Modal
-
       // Get the <span> element that closes the modal
       var span = document.getElementsByClassName("close")[0];
-
       // Open the modal 
       btn.onclick = function() {
           modal.style.display = "block";
       }
-
       // Close the modal
       span.onclick = function() {
           modal.style.display = "none";
       }
-
       // When the user clicks anywhere outside of the modal, close it
       window.onclick = function(event) {
           if (event.target == modal) {
@@ -220,10 +216,11 @@ getParameterByName = (name, url) => {
 }
 
 window.addEventListener("load", function () {
-  console.log(`Form Data: `)
   function sendData() {
     var XHR = new XMLHttpRequest();
-    var restID = window.location.href.slice(-1);
+    var href = window.location.href
+    restID = href.substring(href.indexOf('=')+1);
+    console.log(`Rest ID: ${restID}`);
 
     // Bind the FormData object and the form element
     var FD = new FormData(form);
@@ -232,7 +229,6 @@ window.addEventListener("load", function () {
 
     // Define what happens on successful data submission
     XHR.addEventListener("load", function(event) {
-      alert(`You have successfully added your review`);
       document.getElementById("addReview").reset();
       var modal = document.getElementById('reviewForm');
       modal.style.display = "none";
@@ -243,16 +239,12 @@ window.addEventListener("load", function () {
       }
       fillReviewsHTML();
     });
-
-    // Define what happens in case of error
+    // In case of error
     XHR.addEventListener("error", function(event) {
       alert('Oops! Something went wrong.');
     });
-
     // Set up our request
     XHR.open("POST", "http://localhost:1337/reviews/");
-
-    // The data sent is what the user provided in the form
     XHR.send(FD);
 
   }

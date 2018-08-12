@@ -131,8 +131,10 @@ resetRestaurants = (restaurants) => {
  */
 fillRestaurantsHTML = (restaurants = self.restaurants) => {
   const ul = document.getElementById('restaurants-list');
+  var favStatus = false;
   restaurants.forEach(restaurant => {
-    ul.append(createRestaurantHTML(restaurant));
+    favStatus = restaurant.is_favorite;
+    ul.append(createRestaurantHTML(restaurant, favStatus));
   });
   addMarkersToMap();
 }
@@ -141,7 +143,9 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
  * Create restaurant HTML.
  */
 createRestaurantHTML = (restaurant) => {
+  var favStatus = restaurant.is_favorite;
   const li = document.createElement('li');
+  id = getRestId(restaurant);
 
   const image = document.createElement('img');
   image.className = 'restaurant-img';
@@ -173,6 +177,34 @@ createRestaurantHTML = (restaurant) => {
   more.appendChild(button);
   li.append(more);
 
+  const favButton = document.createElement('btn');
+  const favImage = document.createElement('img');
+  favButton.id = `favButton-${id}`;
+  favButton.type = 'submit';
+  favButton.append(favImage);
+  li.append(favButton);
+
+  setImage = () => {
+    if(favStatus == 'true') {
+      return favImage.src = 'img/icons/filled-star.png';
+      } else {
+        return favImage.src = 'img/icons/empty-star.png';
+      }
+  }
+
+  setImage();
+
+  // const favoriteText = document.createElement('p');
+  // favoriteText.className = 'imageAltText';
+  // favoriteText.innerHTML = favStatus;
+  // li.append(favoriteText);
+
+  // Load Event Listener
+
+  window.addEventListener("load", () => {
+    toggleFavorite(restaurant, favStatus);
+  })
+
   return li
 }
 
@@ -188,4 +220,53 @@ addMarkersToMap = (restaurants = self.restaurants) => {
     });
     self.markers.push(marker);
   });
+}
+
+//Implement Favorite Feature
+
+toggleFavorite = (restaurant, favStatus) => {
+  var restId = getRestId(restaurant);
+  const favButton = document.getElementById(`favButton-${restId}`);
+  var status = favStatus
+  favButton.onclick = function(){
+    console.log(`Restaurant ID: ${restaurant.id}`);
+    console.log(`Fav Status: ${status}`);
+    if(status == 'true') {
+      favButton.childNodes[0].src = '';
+      favButton.childNodes[0].src = 'img/icons/empty-star.png';
+      favoriteDB('false', restaurant);
+      status = 'false';
+      console.log(`New Status: ${status}`);
+      console.log(`Restaurant Unfavorited`);
+    } else {
+      favButton.childNodes[0].src = '';
+      favButton.childNodes[0].src = 'img/icons/filled-star.png';
+      favoriteDB('true', restaurant);
+      status = 'true';
+      console.log(`New Status: ${status}`);
+      console.log(`Restaurant Favorited`);
+    }
+  }
+}
+
+getRestId = (restaurant) => {
+  var url = DBHelper.urlForRestaurant(restaurant);
+  var restId = url.substring(url.indexOf('=')+1);
+  return restId;
+}
+
+favoriteDB = (isFavorite, restaurant) => {
+  var restId = getRestId(restaurant);
+  var url = `http://localhost:1337/restaurants/${restId}/?is_favorite=${isFavorite}`;
+  var data = {is_favorite: `${isFavorite}`};
+
+  fetch(url, {
+    method: 'PUT',
+    body: null,
+    headers:{
+      'Content-Type': 'application/json'
+    }
+  }).then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(response => console.log('Success:', response, console.log(url)));
 }

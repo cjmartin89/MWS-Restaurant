@@ -46,7 +46,7 @@ gulp.task('minify-css', () => {
 
 gulp.task('stream', function () {
   // Endless stream mode
-  watch(['./sw.bak.js','./js/indexeddb.js'], { ignoreInitial: false }, batch(function (events, done) {
+  watch(['./sw.bak.js','./js/indexeddb.js', './js/main.js'], { ignoreInitial: false }, batch(function (events, done) {
     gulp.start(['clean', 'scripts-idb', 'scripts-sw'], done);
   }))
 });
